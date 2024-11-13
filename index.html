@@ -52,7 +52,7 @@
         <br>
         <br>
         <div class="video-container">
-            <video class="howtouse-video" autoplay muted loop playsinline>
+            <video class="howtouse-video" muted loop playsinline>
                 <source src="videos/new_event.mp4" type="video/mp4">
             </video>
         </div>
@@ -69,7 +69,7 @@
         <br>
         
         <div class="video-container">
-            <video class="howtouse-video" autoplay muted loop playsinline>
+            <video class="howtouse-video" muted loop playsinline>
                 <source src="videos/move_event.mp4" type="video/mp4">
             </video>
         </div>
@@ -87,7 +87,7 @@
         
         
         <div class="video-container">
-            <video class="howtouse-video" autoplay muted loop playsinline>
+            <video class="howtouse-video" muted loop playsinline>
                 <source src="videos/copy_paste.mp4" type="video/mp4">
             </video>
         </div>
@@ -103,27 +103,27 @@
         <br>
         <br>
         
-<!--        <script>-->
-<!--            const videos = document.querySelectorAll(".howtouse-video");-->
-<!--            -->
-<!--            // Intersection Observer 설정-->
-<!--            const observer = new IntersectionObserver((entries) => {-->
-<!--                entries.forEach((entry) => {-->
-<!--                    const video = entry.target; // 현재 감지된 비디오 요소-->
-<!--                    if (entry.isIntersecting) {-->
-<!--                        // 비디오가 화면에 나타나면-->
-<!--                        video.currentTime = 0; // 처음으로 이동-->
-<!--                        video.play(); // 재생-->
-<!--                    } else {-->
-<!--                        // 비디오가 화면에서 사라지면-->
-<!--                        video.pause(); // 일시 정지-->
-<!--                    }-->
-<!--                });-->
-<!--            });-->
-<!--            -->
-<!--            // 각 비디오 요소를 관찰-->
-<!--            videos.forEach((video) => observer.observe(video));-->
-<!--        </script>-->
+        <script>
+            const videos = document.querySelectorAll(".howtouse-video");
+            
+            // Intersection Observer 설정
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    const video = entry.target; // 현재 감지된 비디오 요소
+                    if (entry.isIntersecting) {
+                        // 비디오가 화면에 나타나면
+                        video.currentTime = 0; // 처음으로 이동
+                        video.play(); // 재생
+                    } else {
+                        // 비디오가 화면에서 사라지면
+                        video.pause(); // 일시 정지
+                    }
+                });
+            });
+            
+            // 각 비디오 요소를 관찰
+            videos.forEach((video) => observer.observe(video));
+        </script>
         
         <script>
             const translations = {
