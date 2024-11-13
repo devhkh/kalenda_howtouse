@@ -17,7 +17,7 @@
                         background-color: black;
                         font-family: -apple-system, BlinkMacSystemFont;
                     }
-
+                    
                     .container {
                         margin: 0;
                         padding: 0;
@@ -48,13 +48,16 @@
                 </style>
     </head>
     <body>
+        <br>
+        <br>
+        <br>
         <div class="video-container">
             <video class="howtouse-video" muted loop playsinline>
                 <source src="videos/new_event.mp4" type="video/mp4">
             </video>
         </div>
         <br>
-        <p style="color:white;text-align: center">추가하고 싶은 일정의 날짜를 오랫동안 누르고 드래그 해보세요.</p>
+        <p id="video_desc1" style="color:white;text-align: center">추가하고 싶은 일정의 날짜를 오랫동안 누르고 드래그 해보세요.</p>
         <br>
         <br>
         <br>
@@ -71,7 +74,7 @@
             </video>
         </div>
         <br>
-        <p style="color:white;text-align: center">이동하고 싶은 일정을 오랫동안 눌러서 다른 날짜로 변경 해보세요.</p>
+        <p id="video_desc2" style="color:white;text-align: center">이동하고 싶은 일정을 오랫동안 눌러서 다른 날짜로 변경 해보세요.</p>
         <br>
         <br>
         <br>
@@ -89,7 +92,7 @@
             </video>
         </div>
         <br>
-        <p style="color:white;text-align: center">복사하고 싶은 일정을 복사해서, 붙여넣어보세요.</p>
+        <p id="video_desc3" style="color:white;text-align: center">복사하고 싶은 일정을 복사해서, 붙여넣어보세요.</p>
         <br>
         <br>
         <br>
@@ -102,25 +105,53 @@
         
         <script>
             const videos = document.querySelectorAll(".howtouse-video");
-
-                 // Intersection Observer 설정
-                 const observer = new IntersectionObserver((entries) => {
-                     entries.forEach((entry) => {
-                         const video = entry.target; // 현재 감지된 비디오 요소
-                         if (entry.isIntersecting) {
-                             // 비디오가 화면에 나타나면
-                             video.currentTime = 0; // 처음으로 이동
-                             video.play(); // 재생
-                         } else {
-                             // 비디오가 화면에서 사라지면
-                             video.pause(); // 일시 정지
-                         }
-                     });
-                 });
-
-                 // 각 비디오 요소를 관찰
-                 videos.forEach((video) => observer.observe(video));
-            </script>
+            
+            // Intersection Observer 설정
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    const video = entry.target; // 현재 감지된 비디오 요소
+                    if (entry.isIntersecting) {
+                        // 비디오가 화면에 나타나면
+                        video.currentTime = 0; // 처음으로 이동
+                        video.play(); // 재생
+                    } else {
+                        // 비디오가 화면에서 사라지면
+                        video.pause(); // 일시 정지
+                    }
+                });
+            });
+            
+            // 각 비디오 요소를 관찰
+            videos.forEach((video) => observer.observe(video));
+        </script>
+        
+        <script>
+            const translations = {
+                en: {
+                    video_desc1: "Long press and drag the date where you want to add a new event.",
+                    video_desc2: "Long press the event you want to move and drag it to a different date.",
+                    video_desc3: "Copy the event you want to duplicate and paste it elsewhere.",
+                },
+                ko: {
+                    video_desc1: "추가하고 싶은 일정의 날짜를 오랫동안 누르고 드래그 해보세요.",
+                    video_desc2: "이동하고 싶은 일정을 오랫동안 눌러서 다른 날짜로 변경 해보세요.",
+                    video_desc3: "복사하고 싶은 일정을 복사해서, 붙여넣어보세요.",
+                },
+            };
+            
+            // iOS에서 언어를 가져오기 위한 함수 (WKWebView 통신)
+            function setLanguage(lang) {
+                const content = translations[lang] || translations.en; // 기본 언어는 영어
+                document.getElementById("video_desc1").innerText = content.video_desc1;
+                document.getElementById("video_desc2").innerText = content.video_desc2;
+                document.getElementById("video_desc3").innerText = content.video_desc3;
+                
+            }
+            
+            // 초기화: 브라우저 언어로 설정
+            const userLanguage = navigator.language.slice(0, 2); // 'en', 'ko', 'fr' 등
+            setLanguage(userLanguage);
+        </script>
         
         <footer>
         </footer>
